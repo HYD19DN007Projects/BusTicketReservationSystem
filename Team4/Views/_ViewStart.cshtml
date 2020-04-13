@@ -1,0 +1,22 @@
+﻿@{
+    if (HttpContext.Current.Session["type"] != null)
+    {
+        if (HttpContext.Current.Session["type"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_MasterAdmin.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_MasterUser.cshtml";
+        }
+    }
+
+    else if (Request.Url.AbsolutePath == "/User/Index" || Request.Url.AbsolutePath == "/User/registration")
+    {
+        Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    }
+    else
+    {
+        Response.Redirect("/User/Index");
+    }
+}
